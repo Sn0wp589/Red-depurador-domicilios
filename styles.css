@@ -217,13 +217,13 @@ body {
     margin-bottom: 2rem;
 }
 .tab-btn {
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     background: none; border: none;
-    font-size: 1rem; font-weight: 600;
+    font-size: 1.4rem; font-weight: 600;
     color: var(--text-light);
     cursor: pointer;
     position: relative;
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 10px;
     transition: color 0.3s;
 }
 .tab-btn:hover { color: var(--kfc-red); }
