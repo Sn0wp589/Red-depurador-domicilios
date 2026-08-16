@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depurador LISTENS - KFC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand-logo" style="text-align: center; margin-bottom: 2rem;">
+                    <h1 style="font-size: 4rem; color: white; margin: 0; letter-spacing: 2px;">R.E.D</h1>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active">
+                        <i class='bx bx-home-alt'></i> Inicio
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-car'></i> Depurador DIDI
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class='bx bx-run'></i> Depurador RAPPI
+                    </a>
+                    
+
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <!-- Espacio para la imagen del Coronel Sanders que el usuario proveerá -->
+                <div class="colonel-container">
+                    
+                </div>
+                <div class="quote-container">
+                    <p class="quote-text">"La calidad se mide en cada detalle."</p>
+                    <p class="quote-author">Col. Harland Sanders</p>
+                </div>
+                
+
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="top-header">
+                <div class="header-decoration">
+                    <div class="red-bar"></div>
+                    <div class="red-bar"></div>
+                    <div class="red-bar"></div>
+                    <div class="red-bar"></div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- HERO SECTION -->
+                <section class="hero-section">
+                    <div class="hero-content">
+                        <h1>DEPURADOR <span class="text-red">LISTENS</span></h1>
+                        <p>Limpieza, transformación y exportación de datos<br>de agregadores en un solo clic.</p>
+                        <div class="hero-tags">
+                            <span class="tag"><i class='bx bx-car text-red'></i> DIDI</span>
+                            <span class="tag-divider">|</span>
+                            <span class="tag"><i class='bx bx-run text-red'></i> RAPPI</span>
+                        </div>
+                    </div>
+                    <div class="hero-illustration">
+                        <!-- Espacio para el gráfico que el usuario proveerá -->
+                    </div>
+                </section>
+
+                <!-- TABS -->
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-tab="didi">
+                        <i class='bx bx-car'></i> DEPURADOR DIDI
+                    </button>
+                    <button class="tab-btn" data-tab="rappi">
+                        <i class='bx bx-run'></i> DEPURADOR RAPPI
+                    </button>
+                </div>
+
+                <!-- MODE CARDS -->
+                <div class="mode-cards">
+                    <div class="mode-card active">
+                        <div class="mode-icon"><i class='bx bx-upload'></i></div>
+                        <div class="mode-text">
+                            <h3>Procesar un solo archivo</h3>
+                            <p>Sube y procesa un archivo individual</p>
+                        </div>
+                        <i class='bx bx-chevron-right arrow'></i>
+                    </div>
+                    <div class="mode-card">
+                        <div class="mode-icon layers"><i class='bx bx-layer'></i></div>
+                        <div class="mode-text">
+                            <h3>Fusionar varios archivos</h3>
+                            <p>Combina y procesa múltiples archivos</p>
+                        </div>
+                        <i class='bx bx-chevron-right arrow'></i>
+                    </div>
+                </div>
+
+                <!-- WORKSPACE -->
+                <div class="workspace-grid">
+                    <!-- UPLOAD AREA -->
+                    <div class="workspace-panel">
+                        <div class="panel-header">
+                            <span class="step-badge">1</span>
+                            <div class="panel-title">
+                                <h3>Archivo de datos <span id="current-platform-text">DIDI</span></h3>
+                                <p>Sube un solo archivo principal con los pedidos.</p>
+                            </div>
+                            <i class='bx bx-file-blank water-icon'></i>
+                        </div>
+                        
+                        <div class="upload-zone" id="drop-zone">
+                            <input type="file" id="file-input" accept=".csv, .xlsx" hidden>
+                            <div class="upload-content">
+                                <i class='bx bx-cloud-upload cloud-icon'></i>
+                                <h4>SUBIR ARCHIVO</h4>
+                                <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                            </div>
+                            <div class="file-details hidden" id="file-details">
+                                <i class='bx bxs-file-csv'></i>
+                                <span id="filename">archivo.csv</span>
+                                <button id="remove-file"><i class='bx bx-x'></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROCESS AREA -->
+                    <div class="workspace-panel">
+                        <div class="panel-header">
+                            <span class="step-badge">2</span>
+                            <div class="panel-title">
+                                <h3>Procesar archivo <span id="current-platform-process">DIDI</span></h3>
+                                <p>Ejecuta todas las transformaciones para preparar los datos.</p>
+                            </div>
+                            <i class='bx bx-cog water-icon'></i>
+                        </div>
+                        
+                        <div class="process-action">
+                            <button id="process-btn" class="process-btn disabled">
+                                <i class='bx bx-play'></i> Procesar ahora (<span id="btn-platform">DIDI</span>)
+                            </button>
+                            <!-- Lottie or CSS spinner goes here -->
+                            <div class="loader hidden" id="loader">Procesando...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS SUMMARY -->
+                <section class="stats-section">
+                    <div class="stats-header">
+                        <h3><i class='bx bx-bar-chart-alt-2 text-red'></i> Resumen del procesamiento</h3>
+                        <span class="last-update"><i class='bx bx-refresh'></i> Última actualización: <span id="update-time">Hoy, --:-- PM</span></span>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card stat-red">
+                            <div class="stat-icon"><i class='bx bx-file'></i></div>
+                            <div class="stat-info">
+                                <h2 id="stat-filas">0</h2>
+                                <p>FILAS PROCESADAS</p>
+                            </div>
+                            <svg class="sparkline" viewBox="0 0 100 30"><path d="M0,30 Q10,20 20,25 T40,15 T60,20 T80,5 T100,10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        
+                        <div class="stat-card stat-green">
+                            <div class="stat-icon"><i class='bx bx-coin-stack'></i></div>
+                            <div class="stat-info">
+                                <h2 id="stat-datos">0</h2>
+                                <p>DATOS PROCESADOS</p>
+                            </div>
+                            <svg class="sparkline" viewBox="0 0 100 30"><path d="M0,20 Q15,10 30,25 T50,5 T70,15 T100,5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        
+                        <div class="stat-card stat-orange clickable" id="btn-unassigned-modal" title="Ver tiendas sin asignar">
+                            <div class="stat-icon"><i class='bx bx-user-x'></i></div>
+                            <div class="stat-info">
+                                <h2 id="stat-sin-asignar">0</h2>
+                                <p>SIN ASIGNAR</p>
+                            </div>
+                            <svg class="sparkline" viewBox="0 0 100 30"><path d="M0,15 Q20,30 40,15 T70,25 T100,10" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        
+                        <div class="stat-card stat-purple">
+                            <div class="stat-icon"><i class='bx bx-store-alt'></i></div>
+                            <div class="stat-info">
+                                <h2 id="stat-tiendas">0</h2>
+                                <p>TIENDAS ÚNICAS</p>
+                            </div>
+                            <svg class="sparkline" viewBox="0 0 100 30"><path d="M0,10 Q25,20 50,5 T75,25 T100,15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PREVIEW TABLE -->
+                <section class="table-section hidden" id="preview-section">
+                    <div class="panel-header" style="margin-bottom: 1rem;">
+                        <div class="panel-title">
+                            <h3 style="font-size: 1.5rem;"><i class='bx bx-table text-red'></i> Vista Previa de Datos Procesados</h3>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem;">Mostrando las primeras 30 filas del archivo depurado.</p>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="unassigned-table">
+                            <thead id="preview-thead">
+                                <!-- Headers will be inserted here -->
+                            </thead>
+                            <tbody id="preview-tbody" style="font-family: 'Inter', sans-serif; font-size: 0.85rem;">
+                                <!-- Rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <div class="footer-logo">
+                    <strong>BUCKET <span class="text-red">ATTITUDE</span></strong>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- MODAL TIENDAS SIN ASIGNAR -->
+    <div class="modal-overlay hidden" id="unassigned-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class='bx bx-error-circle text-red'></i> Tiendas Sin Asignar</h2>
+                <button id="close-modal"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body">
+                <table class="unassigned-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre de la Tienda</th>
+                            <th>Cantidad de Pedidos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal-unassigned-tbody" style="font-family: 'Inter', sans-serif; font-size: 0.9rem;">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
