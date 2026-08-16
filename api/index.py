@@ -5,6 +5,7 @@ import base64
 import io
 
 import pandas as pd
+from typing import List
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 
@@ -551,23 +552,33 @@ def process_rappi(df: pd.DataFrame) -> pd.DataFrame:
 
 
 @app.post("/api/index")
-async def process_file(file: UploadFile = File(...), platform: str = Form(...)):
-    contents = await file.read()
+async def process_file(files: List[UploadFile] = File(...), platform: str = Form(...)):
+    df_list = []
+    total_original_rows = 0
 
-    if file.filename.endswith('.csv'):
-        try:
-            df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='utf-8')
-        except Exception:
-            df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='latin1')
-    else:
-        df = pd.read_excel(io.BytesIO(contents))
+    for file in files:
+        contents = await file.read()
+        if file.filename.endswith('.csv'):
+            try:
+                df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='utf-8')
+            except Exception:
+                df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='latin1')
+        else:
+            df = pd.read_excel(io.BytesIO(contents))
+        df_list.append(df)
+        total_original_rows += len(df)
+        
+    if not df_list:
+        return JSONResponse(status_code=400, content={"detail": "No se subieron archivos."})
+        
+    combined_df = pd.concat(df_list, ignore_index=True)
 
     if platform.lower() == 'didi':
-        processed_df = process_didi(df)
+        processed_df = process_didi(combined_df)
     else:
-        processed_df = process_rappi(df)
+        processed_df = process_rappi(combined_df)
 
-    total_filas = len(df)
+    total_filas = total_original_rows
     datos_procesados = len(processed_df)
     sin_asignar = int(processed_df['chmps'].isna().sum())
     tiendas_unicas = int(processed_df['chmps'].nunique())

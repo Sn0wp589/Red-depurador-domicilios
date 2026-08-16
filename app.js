@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const removeBtn = document.getElementById('remove-file');
     const processBtn = document.getElementById('process-btn');
 
-    let currentFile = null;
+    let currentFiles = [];
 
     // Tabs logic
     tabs.forEach(tab => {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(el) el.textContent = platform;
             });
             
-            if(currentFile) removeFile();
+            if(currentFiles.length > 0) removeFile();
         });
     });
 
@@ -39,9 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeCards = document.querySelectorAll('.mode-card');
     modeCards.forEach(card => {
         card.addEventListener('click', () => {
-            if (card.querySelector('h3').textContent.includes('Fusionar')) {
-                alert('La opción "Fusionar varios archivos" estará disponible en una próxima actualización. Por ahora, procesa tus archivos individualmente.');
-            }
+            modeCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
         });
     });
 
@@ -66,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dropZone.style.backgroundColor = '';
         
         if (e.dataTransfer.files.length) {
-            handleFile(e.dataTransfer.files[0]);
+            handleFiles(e.dataTransfer.files);
         }
     });
 
     fileInput.addEventListener('change', (e) => {
         if (e.target.files.length) {
-            handleFile(e.target.files[0]);
+            handleFiles(e.target.files);
         }
     });
 
@@ -81,18 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
         removeFile();
     });
 
-    function handleFile(file) {
-        currentFile = file;
+    function handleFiles(files) {
+        currentFiles = Array.from(files);
         uploadContent.classList.add('hidden');
         fileDetails.classList.remove('hidden');
-        filenameDisplay.textContent = file.name;
+        
+        if (currentFiles.length === 1) {
+            filenameDisplay.textContent = currentFiles[0].name;
+        } else {
+            filenameDisplay.textContent = `${currentFiles.length} archivos seleccionados`;
+        }
         
         processBtn.classList.remove('disabled');
         processBtn.classList.add('active');
     }
 
     function removeFile() {
-        currentFile = null;
+        currentFiles = [];
         fileInput.value = '';
         uploadContent.classList.remove('hidden');
         fileDetails.classList.add('hidden');
@@ -103,14 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Process File Logic (Fetch API to Python backend)
     processBtn.addEventListener('click', async () => {
-        if (!currentFile || processBtn.classList.contains('disabled')) return;
+        if (currentFiles.length === 0 || processBtn.classList.contains('disabled')) return;
 
         const loader = document.getElementById('loader');
         processBtn.classList.add('hidden');
         loader.classList.remove('hidden');
 
         const formData = new FormData();
-        formData.append('file', currentFile);
+        currentFiles.forEach(file => {
+            formData.append('files', file);
+        });
         formData.append('platform', currentPlatform.toLowerCase());
 
         try {
