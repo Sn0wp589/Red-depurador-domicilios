@@ -134,7 +134,6 @@ body {
 /* MAIN CONTENT */
 .main-content {
     flex: 1;
-    margin-left: 260px;
     display: flex;
     flex-direction: column;
     min-width: 0; /* Prevents flex child from blowing out page width */
