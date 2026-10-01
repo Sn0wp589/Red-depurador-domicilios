@@ -521,8 +521,13 @@ def process_rappi(df: pd.DataFrame) -> pd.DataFrame:
     df["shop_name"] = df.get("Tienda", "")
     df["shop_name"] = df["shop_name"].apply(format_shop_name_like_didi)
 
-    if "Fecha de creación" in df.columns:
-        parsed_dates = pd.to_datetime(df["Fecha de creación"], format='%d/%m/%Y - %I:%M %p', errors='coerce')
+    # Fix para problemas de codificación (caracteres raros) en los encabezados
+    col_fecha = next((c for c in df.columns if "fecha de creaci" in c.lower()), None)
+    col_calif = next((c for c in df.columns if "calificaci" in c.lower()), None)
+    col_razon = next((c for c in df.columns if "raz" in c.lower() and "n" in c.lower()), None)
+
+    if col_fecha and col_fecha in df.columns:
+        parsed_dates = pd.to_datetime(df[col_fecha], format='%d/%m/%Y - %I:%M %p', errors='coerce')
         df["order_create_time_local"] = parsed_dates.dt.strftime("%Y-%m-%d %H:%M")
         iso = parsed_dates.dt.isocalendar()
         valid = parsed_dates.notna()
@@ -538,8 +543,15 @@ def process_rappi(df: pd.DataFrame) -> pd.DataFrame:
         df["order_create_time_local"] = pd.NA
         df["order_create_week"] = pd.NA
 
-    df["rating_stars"] = pd.to_numeric(df.get("Calificación", pd.NA), errors="coerce")
-    df["rating_comment"] = df.get("Razón", pd.NA)
+    if col_calif:
+        df["rating_stars"] = pd.to_numeric(df.get(col_calif, pd.NA), errors="coerce")
+    else:
+        df["rating_stars"] = pd.NA
+        
+    if col_razon:
+        df["rating_comment"] = df.get(col_razon, pd.NA)
+    else:
+        df["rating_comment"] = pd.NA
 
     desired_order = [
         "order_id", "chmps", "order_id_short", "shop_name",
