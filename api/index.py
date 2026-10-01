@@ -421,6 +421,70 @@ CHMPS_MAPPING_DICT = {
     "los corales": "57K5187",
 }
 
+# ── Diccionario inverso: CHMPS → Nombre oficial ─────────────────────────────
+# Construido a partir del maestro de tiendas (sin regiones).
+# Este es el nombre "oficial" que se usará en shop_name para AMBAS plataformas.
+CHMPS_TO_OFFICIAL_NAME = {
+    "57K5001": "KFC(Chia)", "57K5002": "KFC(Metropolis)", "57K5003": "KFC(Santa Paula)",
+    "57K5004": "KFC(Iserra 100)", "57K5005": "KFC(Salitre Plaza)", "57K5006": "KFC(El Tesoro)",
+    "57K5007": "KFC(Atlantis)", "57K5011": "KFC(Plaza Imperial)", "57K5012": "KFC(Cedritos)",
+    "57K5014": "KFC(Calle 10)", "57K5016": "KFC(Calima)", "57K5017": "KFC(Calle 100)",
+    "57K5018": "KFC(Santa Fe)", "57K5019": "KFC(Santa Fe Medellin)", "57K5020": "KFC(Llano Grande Palmira)",
+    "57K5021": "KFC(Bulevar Niza)", "57K5022": "KFC(Unico Cali)", "57K5023": "KFC(Unicentro Cali)",
+    "57K5025": "KFC(Galerias)", "57K5026": "KFC(Unico Villavicencio)", "57K5027": "KFC(Hayuelos)",
+    "57K5028": "KFC(Roosevelt)", "57K5029": "KFC(Parque Comercial La Florida)", "57K5030": "KFC(Portal Del Quindio)",
+    "57K5031": "KFC(La Estacion - Ibague)", "57K5032": "KFC(Exito Galerias Fontibon)", "57K5033": "KFC(Viva Villavicencio)",
+    "57K5034": "KFC(Plaza De Las Americas)", "57K5035": "KFC(Centro Mayor)", "57K5036": "KFC(Ciudad Tunal)",
+    "57K5037": "KFC(Unicentro Bogota)", "57K5038": "KFC(Palmetto Cali)", "57K5039": "KFC(Calle 85)",
+    "57K5040": "KFC(Cafam La Floresta)", "57K5042": "KFC(Cc Mayorca Medellin)", "57K5043": "KFC(Portal De La 80)",
+    "57K5044": "KFC(Buena Vista)", "57K5045": "KFC(Americas)", "57K5046": "KFC(Plaza Del Sol Barranquilla)",
+    "57K5047": "KFC(San Martin Cartagena)", "57K5048": "KFC(Plaza Central)", "57K5049": "KFC(Cc Antares)",
+    "57K5050": "KFC(Parque La Colina)", "57K5051": "KFC(Viva Barranquilla)", "57K5052": "KFC(Cc Chipichape)",
+    "57K5053": "KFC(Avenida 6A)", "57K5054": "KFC(Ibague)", "57K5055": "KFC(Premium Plaza)",
+    "57K5056": "KFC(Laureles)", "57K5057": "KFC(Chapinero)", "57K5059": "KFC(Bosa)",
+    "57K5060": "KFC(Portal Del Prado)", "57K5061": "KFC(Ventura Terreros)", "57K5062": "KFC(Gran Estacion)",
+    "57K5063": "KFC(Av. Jimenez)", "57K5064": "KFC(Ferias)", "57K5065": "KFC(Restrepo)",
+    "57K5066": "KFC(Titan)", "57K5067": "KFC(Unico Barranquilla)", "57K5068": "KFC(Toberin)",
+    "57K5069": "KFC(Alcala)", "57K5070": "KFC(Centro Comercial Mayorca)", "57K5071": "KFC(Centro Comercial Buenos Aires)",
+    "57K5072": "KFC(Junin)", "57K5073": "KFC(Kennedy)", "57K5074": "KFC(Lourdes)",
+    "57K5075": "KFC(Park Way)", "57K5076": "KFC(Shaio)", "57K5077": "KFC(Centro Historico)",
+    "57K5078": "KFC(Cc Exito Viva Envigado)", "57K5079": "KFC(Gran Plaza El Ensueno)", "57K5080": "KFC(Centro Comercial Plaza De Las Americas)",
+    "57K5081": "KFC(Cr 43)", "57K5082": "KFC(Mall Plaza El Castillo)", "57K5083": "KFC(Fontanar)",
+    "57K5084": "KFC(Modelia)", "57K5085": "KFC(Fontibon)", "57K5086": "KFC(Fundadores)",
+    "57K5088": "KFC(7-17)", "57K5089": "KFC(Mall Plaza Manizales)", "57K5090": "KFC(Tintal Plaza)",
+    "57K5091": "KFC(Santa Helenita)", "57K5092": "KFC(El Eden)", "57K5093": "KFC(Acqua 74)",
+    "57K5094": "KFC(Paseo San Rafael)", "57K5095": "KFC(Arkadia)", "57K5096": "KFC(Diverplaza)",
+    "57K5097": "KFC(Centro Pereira)", "57K5098": "KFC(Parque Caracoli)", "57K5099": "KFC(Cabecera)",
+    "57K5100": "KFC(Caney)", "57K5101": "KFC(Avenida Chile)", "57K5102": "KFC(San Pedro Plaza)",
+    "57K5103": "KFC(Viva Tunja)", "57K5104": "KFC(Unicentro Pereira)", "57K5105": "KFC(Normandia)",
+    "57K5106": "KFC(Ecoplaza)", "57K5107": "KFC(Paseo Villa Del Rio)", "57K5108": "KFC(Parque Arboleda)",
+    "57K5109": "KFC(Unicentro Medellin)", "57K5110": "KFC(Nuestro Bogota)", "57K5111": "KFC(Buenavista)",
+    "57K5112": "KFC(Puerta Del Norte)", "57K5113": "KFC(Suba)", "57K5114": "KFC(Cosmocentro)",
+    "57K5115": "KFC(Jardin Plaza)", "57K5116": "KFC(Centro Armenia)", "57K5117": "KFC(Cacique)",
+    "57K5118": "KFC(Castilla)", "57K5119": "KFC(Plaza Fabricato)", "57K5120": "KFC(Megamall)",
+    "57K5121": "KFC(Palmira Versalles)", "57K5122": "KFC(Caribe Plaza)", "57K5123": "KFC(Altavista Usme)",
+    "57K5124": "KFC(Terminal Sur)", "57K5125": "KFC(Carnaval)", "57K5126": "KFC(Alamedas)",
+    "57K5127": "KFC(Terminal Cali)", "57K5128": "KFC(Nuestro Monteria)", "57K5129": "KFC(Jardin Plaza Cucuta)",
+    "57K5130": "KFC(Ventura Cucuta)", "57K5131": "KFC(Guacari)", "57K5132": "KFC(Quirigua)",
+    "57K5133": "KFC(Parque Alegra)", "57K5134": "KFC(Guatapuri)", "57K5135": "KFC(San Fernando)",
+    "57K5136": "KFC(7 De Agosto)", "57K5137": "KFC(Pasoancho)", "57K5138": "KFC(Parque De Los Novios)",
+    "57K5139": "KFC(Calazans)", "57K5140": "KFC(Villa Del Mar)", "57K5141": "KFC(Cc Plaza Claro)",
+    "57K5142": "KFC(Venecia)", "57K5143": "KFC(El Leon)", "57K5144": "KFC(Parque Ospina)",
+    "57K5145": "KFC(Villa Del Rio)", "57K5147": "KFC(Bosa Piamonte)", "57K5148": "KFC(20 De Julio)",
+    "57K5149": "KFC(Viva Sincelejo)", "57K5150": "KFC(Mayales Plaza Comercial)", "57K5151": "KFC(Ciudad Cordoba)",
+    "57K5152": "KFC(Melgar)", "57K5153": "KFC(7-12)", "57K5154": "KFC(Plaza Del Sol Dosquebradas)",
+    "57K5156": "KFC(Rodadero)", "57K5157": "KFC(Madrid)", "57K5158": "KFC(Suba Pinar)",
+    "57K5159": "KFC(Av. Cordialidad)", "57K5160": "KFC(Zipaquira)", "57K5161": "KFC(Sogamoso)",
+    "57K5162": "KFC(Cartago)", "57K5163": "KFC(La Herradura)", "57K5164": "KFC(Buenavista Monteria)",
+    "57K5165": "KFC(Mall Plaza Cali)", "57K5166": "KFC(San Nicolas Rio Negro)", "57K5167": "KFC(Florida Ii)",
+    "57K5168": "KFC(Av. Pedro De Heredia)", "57K5169": "KFC(Arbolatta)", "57K5171": "KFC(Mercurio)",
+    "57K5172": "KFC(San Silvestre)", "57K5173": "KFC(Ciudad Jardin)", "57K5174": "KFC(Unico Bucaramanga)",
+    "57K5175": "KFC(Multiplaza Bogota)", "57K5176": "KFC(Neiva Cra 7)", "57K5177": "KFC(Plaza De Las Americas 3)",
+    "57K5178": "KFC(Soacha Parque)", "57K5179": "KFC(Distrito 21)", "57K5180": "KFC(Duitama)",
+    "57K5181": "KFC(Avenida 30 De Agosto)", "57K5182": "KFC(Turbaco)", "57K5183": "KFC(Belen)",
+    "57K5185": "KFC(Cc Cenco Limonar)", "57K5187": "KFC(Los Corales)",
+}
+
 # ── FastAPI app ──────────────────────────────────────────────────────────────
 
 app = FastAPI()
@@ -519,8 +583,17 @@ def process_rappi(df: pd.DataFrame) -> pd.DataFrame:
         df["order_id_short"] = "SIN_ID"
         df["order_id"] = "SIN_ID"
 
-    df["shop_name"] = df.get("Tienda", "")
-    df["shop_name"] = df["shop_name"].apply(format_shop_name_like_didi)
+    # Usar el nombre oficial del diccionario inverso CHMPS → Nombre.
+    # Así, sin importar cómo escriba Rappi el nombre, el resultado final
+    # siempre será idéntico al de DiDi para la misma tienda.
+    def get_official_name(row):
+        chmps_code = row.get("chmps")
+        if pd.notna(chmps_code) and chmps_code in CHMPS_TO_OFFICIAL_NAME:
+            return CHMPS_TO_OFFICIAL_NAME[chmps_code]
+        # Fallback: si no se encontró CHMPS, usar el nombre de Rappi formateado
+        return format_shop_name_like_didi(str(row.get("Tienda", "")))
+
+    df["shop_name"] = df.apply(get_official_name, axis=1)
 
     # Fix para problemas de codificación (caracteres raros) en los encabezados
     col_fecha = next((c for c in df.columns if "fecha de creaci" in c.lower()), None)
