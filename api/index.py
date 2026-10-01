@@ -37,7 +37,8 @@ def extract_store_name(store_value) -> str:
             name = match.group(1).strip().lower()
         else:
             name = text.lower()
-    name = re.sub(r'\bpostres?\b', '', name, flags=re.IGNORECASE)
+    # Ignorar la palabra "postres" y "alitas" para que la tienda coincida con su CHMPS real
+    name = re.sub(r'\b(?:postres?|alitas?)\b', '', name, flags=re.IGNORECASE)
     name = re.sub(r'^\s*[:\-–]\s*|\s*[:\-–]\s*$', '', name)
     return name.strip()
 
@@ -681,8 +682,14 @@ async def process_file(files: List[UploadFile] = File(...), platform: str = Form
     else:
         unassigned_stores = []
 
-    # Eliminar las filas sin CHMPS para que el archivo final no genere errores
+    # Eliminar las filas sin CHMPS (asegurando que borre nulos, vacíos y "nan" de texto)
     processed_df = processed_df.dropna(subset=['chmps'])
+    processed_df = processed_df[
+        processed_df['chmps'].notna() & 
+        (processed_df['chmps'].astype(str).str.strip() != "") & 
+        (processed_df['chmps'].astype(str).str.lower() != "nan") & 
+        (processed_df['chmps'].astype(str).str.lower() != "<na>")
+    ]
 
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
