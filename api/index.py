@@ -512,8 +512,9 @@ def process_rappi(df: pd.DataFrame) -> pd.DataFrame:
     df["country_code"] = "COL"
 
     if "ID Orden" in df.columns:
-        df["order_id_short"] = df["ID Orden"].astype(str)
-        df["order_id"] = "id_" + df["ID Orden"].astype(str)
+        # Convertir a string y quitar el '.0' si pandas lo leyó como decimal (float)
+        df["order_id_short"] = df["ID Orden"].astype(str).str.replace(r'\.0$', '', regex=True)
+        df["order_id"] = "id_" + df["order_id_short"]
     else:
         df["order_id_short"] = "SIN_ID"
         df["order_id"] = "SIN_ID"
@@ -575,10 +576,14 @@ async def process_file(files: List[UploadFile] = File(...), platform: str = Form
                 df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='utf-8')
             except Exception:
                 df = pd.read_csv(io.BytesIO(contents), sep=';', encoding='latin1')
+            df_list.append(df)
+            total_original_rows += len(df)
         else:
-            df = pd.read_excel(io.BytesIO(contents))
-        df_list.append(df)
-        total_original_rows += len(df)
+            excel_dfs = pd.read_excel(io.BytesIO(contents), sheet_name=None)
+            for sheet_name, sheet_df in excel_dfs.items():
+                if not sheet_df.empty:
+                    df_list.append(sheet_df)
+                    total_original_rows += len(sheet_df)
         
     if not df_list:
         return JSONResponse(status_code=400, content={"detail": "No se subieron archivos."})
