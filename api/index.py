@@ -700,9 +700,14 @@ async def process_file(files: List[UploadFile] = File(...), platform: str = Form
     preview_df = processed_df.head(30).fillna("")
     preview_data = preview_df.to_dict('records')
 
+    import datetime
+    fecha_actual = datetime.datetime.now().strftime("%d-%m-%Y")
+    nombre_plataforma = platform.capitalize()
+    nombre_archivo = f"{nombre_plataforma} Comentarios ({fecha_actual}).xlsx"
+
     return JSONResponse(content={
         "file_base64": file_base64,
-        "filename": f"{platform}_procesado.xlsx",
+        "filename": nombre_archivo,
         "stats": {
             "total_filas": total_filas,
             "datos_procesados": datos_procesados,
