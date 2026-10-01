@@ -681,6 +681,9 @@ async def process_file(files: List[UploadFile] = File(...), platform: str = Form
     else:
         unassigned_stores = []
 
+    # Eliminar las filas sin CHMPS para que el archivo final no genere errores
+    processed_df = processed_df.dropna(subset=['chmps'])
+
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
         processed_df.to_excel(writer, index=False, sheet_name='Sheet1')
